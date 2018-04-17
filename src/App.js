@@ -4,20 +4,21 @@ import './App.css';
 import firebaseApp from './firebase';
 
 class App extends Component {
+
   constructor(props) {
     super(props);
     this.state = { talks: [] };
   }
 
   componentWillMount(){
-    let messagesRef = firebaseApp.database().ref('messages').orderByKey();
+    let talksRef = firebaseApp.database().ref().child('messages').orderByKey();
 
-    messagesRef.on('child_added', snapshot => {
-      let message = {
+    talksRef.on('child_added', snapshot => {
+      let talk = {
         text: snapshot.val(),
         id: snapshot.key
       };
-      this.setState({ talks: [message].concat(this.state.talks) });
+      this.setState({ talks: [talk].concat(this.state.talks) });
     })
   }
 
@@ -31,19 +32,22 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title"> Semana de la UTN - Admin </h1>
         </header>
+
         <form onSubmit={this.addTalk.bind(this)}>
           <input type="text" ref={ el => this.inputEl = el } />
           <input type="submit" />
           <ul>
             { /* Render the list of messages */
-              this.state.talks.map( message => <li key={message.id}>{message.text}</li> )
+              this.state.talks.map( message => <li key={message.id}> {message.text} </li> )
             }
           </ul>
         </form>
+
       </div>
      );
   }
