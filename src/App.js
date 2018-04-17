@@ -10,8 +10,12 @@ class App extends Component {
     this.state = { talks: [] };
   }
 
-  componentWillMount(){
-    let talksRef = firebaseApp.database().ref().child('messages').orderByKey();
+  getRef() {
+    return firebaseApp.database().ref();
+  }
+
+  componentWillMount() {
+    let talksRef = this.getRef().child('messages').orderByKey();
 
     talksRef.on('child_added', snapshot => {
       let talk = {
@@ -22,7 +26,7 @@ class App extends Component {
     })
   }
 
-  addTalk(e){
+  addTalk(e) {
     e.preventDefault(); // <- prevent form submit from reloading the page
     /* Send the message to Firebase */
     firebaseApp.database().ref('messages').push( this.inputEl.value );
