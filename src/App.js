@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import firebaseApp from './firebase';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Table } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
@@ -89,7 +89,8 @@ class App extends Component {
               <option value="thursday">Jueves</option>
               <option value="friday">Viernes</option>
             </select>
-            <input placeholder="hora" type="time" pattern="(?:[01]|2(?![4-9])){1}\d{1}:[0-5]{1}\d{1}" ref={ time => this.inputTime = time } class="without_ampm" />
+
+            <input placeholder="hora" type="time" ref={ time => this.inputTime = time } />
             <input type="submit" value="Crear" />
             <br />
             <br />
@@ -104,16 +105,33 @@ class App extends Component {
               <option value="friday">Viernes</option>
             </select>
 
+            <Table>
+              <thead>
+                <tr>
+                  <th>time</th>
+                  <th>title</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  this.state.talks.map(
+                    (talk) => {
+                      if (talk.day == this.state.selectedDay) {
+                        return(<tr>
+                          <th scope="row">{talk.time}</th>
+                          <td>{talk.title}</td>
+                        </tr>)
+                      }
+                      else {
+                        return(<div></div>)
+                      }
+                    }
+                  )
+                }
+              </tbody>
+            </Table>
+            
           </div>
-          <ul>
-            { /* Render the list of talks */
-              this.state.talks.map(
-                talk => talk.day == this.state.selectedDay ?
-                  <li key={talk.id}> {talk.title} </li> :
-                  <div></div>
-              )
-            }
-          </ul>
         </Form>
 
       </div>
