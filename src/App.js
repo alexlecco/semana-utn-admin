@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+
 import firebaseApp from './firebase';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      talks: []
+      talks: [],
+      selectedDay: 'monday'
     };
-    this.talksRef = this.getRef().child('talks');
+    this.talksRef = this.getRef().child('talks').orderByChild('time');
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   getRef() {
@@ -59,6 +65,10 @@ class App extends Component {
     this.inputTitle.value = ''; // <- clear the input
   }
 
+  handleChange(event) {
+    this.setState({selectedDay: event.target.value});
+  }
+
   render() {
     return (
       <div className="App">
@@ -68,21 +78,28 @@ class App extends Component {
           <h1 className="App-title"> Semana de la UTN - Admin </h1>
         </header>
 
-        <form onSubmit={this.addTalk.bind(this)}>
-          <input placeholder="titulo" type="text" ref={ title => this.inputTitle = title } />
-          <br />
-          <input placeholder="dia"    type="text" ref={ day => this.inputDay = day } />
-          <br />
-          <input placeholder="hora"   type="text" ref={ time => this.inputTime = time } />
-          <br />
-          <br />
-          <input type="submit" />
+        <Form onSubmit={this.addTalk.bind(this)}>
+          <div className="container">
+            <input placeholder="titulo" type="text" ref={ title => this.inputTitle = title } />
+            <input placeholder="dia"    type="text" ref={ day => this.inputDay = day } />
+            <input placeholder="hora"   type="text" ref={ time => this.inputTime = time } />
+            <input type="submit" />
+
+            <select value={this.state.selectedDay} onChange={this.handleChange}>
+              <option value="monday">Lunes</option>
+              <option value="tuesday">Martes</option>
+              <option value="wednesday">Miercoles</option>
+              <option value="thursday">Jueves</option>
+              <option value="friday">Viernes</option>
+            </select>
+          </div>
+          
           <ul>
             { /* Render the list of messages */
-              this.state.talks.map( talk => <li key={talk.id}> {talk.title} </li> )
+              this.state.talks.map( talk => talk.day == this.state.selectedDay ? <li key={talk.id}> {talk.title} </li> : <div></div> )
             }
           </ul>
-        </form>
+        </Form>
 
       </div>
      );
