@@ -39,8 +39,6 @@ class App extends Component {
         });
       });
 
-      console.log("TALKSSSS::::", talks);
-
       this.setState({
         talks: talks
       });
@@ -50,9 +48,15 @@ class App extends Component {
 
   addTalk(e) {
     e.preventDefault(); // <- prevent form submit from reloading the page
-    /* Send the message to Firebase */
-    firebaseApp.database().ref('messages').push( this.inputEl.value );
-    this.inputEl.value = ''; // <- clear the input
+    /* Send the talk to Firebase */
+    firebaseApp.database().ref('talks').push({
+      day: this.inputDay.value,
+      time: this.inputTime.value,
+      title: this.inputTitle.value
+    });
+    this.inputDay.value = ''; // <- clear the input
+    this.inputTime.value = ''; // <- clear the input
+    this.inputTitle.value = ''; // <- clear the input
   }
 
   render() {
@@ -65,7 +69,13 @@ class App extends Component {
         </header>
 
         <form onSubmit={this.addTalk.bind(this)}>
-          <input type="text" ref={ el => this.inputEl = el } />
+          <input placeholder="titulo" type="text" ref={ title => this.inputTitle = title } />
+          <br />
+          <input placeholder="dia"    type="text" ref={ day => this.inputDay = day } />
+          <br />
+          <input placeholder="hora"   type="text" ref={ time => this.inputTime = time } />
+          <br />
+          <br />
           <input type="submit" />
           <ul>
             { /* Render the list of messages */
