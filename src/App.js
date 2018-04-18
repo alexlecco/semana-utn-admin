@@ -56,13 +56,12 @@ class App extends Component {
     e.preventDefault(); // <- prevent form submit from reloading the page
     /* Send the talk to Firebase */
     firebaseApp.database().ref('talks').push({
+      title: this.inputTitle.value,
       day: this.inputDay.value,
       time: this.inputTime.value,
-      title: this.inputTitle.value
     });
-    this.inputDay.value = ''; // <- clear the input
-    this.inputTime.value = ''; // <- clear the input
     this.inputTitle.value = ''; // <- clear the input
+    this.inputTime.value = ''; // <- clear the input
   }
 
   handleChange(event) {
@@ -80,10 +79,17 @@ class App extends Component {
 
         <Form onSubmit={this.addTalk.bind(this)}>
           <div className="container">
+
             <h3>Nueva charla</h3>
             <input placeholder="titulo" type="text" ref={ title => this.inputTitle = title } />
-            <input placeholder="dia"    type="text" ref={ day => this.inputDay = day } />
-            <input placeholder="hora"   type="text" ref={ time => this.inputTime = time } />
+            <select ref={ day => this.inputDay = day }>
+              <option value="monday">Lunes</option>
+              <option value="tuesday">Martes</option>
+              <option value="wednesday">Miercoles</option>
+              <option value="thursday">Jueves</option>
+              <option value="friday">Viernes</option>
+            </select>
+            <input placeholder="hora" type="time" pattern="(?:[01]|2(?![4-9])){1}\d{1}:[0-5]{1}\d{1}" ref={ time => this.inputTime = time } class="without_ampm" />
             <input type="submit" value="Crear" />
             <br />
             <br />
@@ -97,10 +103,10 @@ class App extends Component {
               <option value="thursday">Jueves</option>
               <option value="friday">Viernes</option>
             </select>
+
           </div>
-          
           <ul>
-            { /* Render the list of messages */
+            { /* Render the list of talks */
               this.state.talks.map(
                 talk => talk.day == this.state.selectedDay ?
                   <li key={talk.id}> {talk.title} </li> :
