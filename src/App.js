@@ -80,11 +80,16 @@ class App extends Component {
 
         <Form onSubmit={this.addTalk.bind(this)}>
           <div className="container">
+            <h3>Nueva charla</h3>
             <input placeholder="titulo" type="text" ref={ title => this.inputTitle = title } />
             <input placeholder="dia"    type="text" ref={ day => this.inputDay = day } />
             <input placeholder="hora"   type="text" ref={ time => this.inputTime = time } />
-            <input type="submit" />
+            <input type="submit" value="Crear" />
+            <br />
+            <br />
+            <br />
 
+            <h5>Charlas del día</h5>
             <select value={this.state.selectedDay} onChange={this.handleChange}>
               <option value="monday">Lunes</option>
               <option value="tuesday">Martes</option>
@@ -96,7 +101,11 @@ class App extends Component {
           
           <ul>
             { /* Render the list of messages */
-              this.state.talks.map( talk => talk.day == this.state.selectedDay ? <li key={talk.id}> {talk.title} </li> : <div></div> )
+              this.state.talks.map(
+                talk => talk.day == this.state.selectedDay ?
+                  <li key={talk.id}> {talk.title} </li> :
+                  <div></div>
+              )
             }
           </ul>
         </Form>
