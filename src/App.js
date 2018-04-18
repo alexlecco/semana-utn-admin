@@ -7,23 +7,45 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { talks: [] };
+    this.state = {
+      talks: []
+    };
+    this.talksRef = this.getRef().child('talks');
   }
 
   getRef() {
     return firebaseApp.database().ref();
   }
 
-  componentWillMount() {
-    let talksRef = this.getRef().child('messages').orderByKey();
+  componentDidMount() {
+    this.listenForItems(this.talksRef);
+  }
 
-    talksRef.on('child_added', snapshot => {
-      let talk = {
-        text: snapshot.val(),
-        id: snapshot.key
-      };
-      this.setState({ talks: [talk].concat(this.state.talks) });
-    })
+  listenForItems(talksRef) {
+    talksRef.on('value', snap => {
+
+      // get children as an array
+      var talks = [];
+
+      snap.forEach((child) => {
+        talks.push({
+
+          day: child.val().day,
+          id: child.val().id,
+          time: child.val().time,
+          title: child.val().title,
+          _key: child.key
+
+        });
+      });
+
+      console.log("TALKSSSS::::", talks);
+
+      this.setState({
+        talks: talks
+      });
+
+    });
   }
 
   addTalk(e) {
@@ -47,7 +69,7 @@ class App extends Component {
           <input type="submit" />
           <ul>
             { /* Render the list of messages */
-              this.state.talks.map( message => <li key={message.id}> {message.text} </li> )
+              this.state.talks.map( talk => <li key={talk.id}> {talk.title} </li> )
             }
           </ul>
         </form>
