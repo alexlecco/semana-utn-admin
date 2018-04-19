@@ -15,6 +15,7 @@ class App extends Component {
       selectedDay: 'monday'
     };
     this.talksRef = this.getRef().child('talks').orderByChild('time');
+    this.removeTalk = this.removeTalk.bind(this);
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -31,7 +32,7 @@ class App extends Component {
     talksRef.on('value', snap => {
 
       // get children as an array
-      var talks = [];
+      let talks = [];
 
       snap.forEach((child) => {
         talks.push({
@@ -52,8 +53,8 @@ class App extends Component {
     });
   }
 
-  addTalk(e) {
-    e.preventDefault(); // <- prevent form submit from reloading the page
+  addTalk(event) {
+    event.preventDefault(); // <- prevent form submit from reloading the page
     /* Send the talk to Firebase */
     firebaseApp.database().ref('talks').push({
       title: this.inputTitle.value,
@@ -66,6 +67,10 @@ class App extends Component {
 
   handleChange(event) {
     this.setState({selectedDay: event.target.value});
+  }
+
+  removeTalk(key){
+    firebaseApp.database().child('talks').child(key).remove();
   }
 
   render() {
@@ -105,7 +110,7 @@ class App extends Component {
               <option value="friday">Viernes</option>
             </select>
 
-            <Table>
+            <Table striped>
               <thead>
                 <tr>
                   <th>time</th>
@@ -116,10 +121,12 @@ class App extends Component {
                 {
                   this.state.talks.map(
                     (talk) => {
-                      if (talk.day == this.state.selectedDay) {
+                      if (talk.day === this.state.selectedDay) {
                         return(<tr>
-                          <th scope="row">{talk.time}</th>
-                          <td>{talk.title}</td>
+                          <th scope="row"> {talk.time} </th>
+                          <td> {talk.title} </td>
+                          <td><a onClick={ () => {} } style={{cursor: 'pointer', color: 'blue'}}>modificar</a></td>
+                          <td><a onClick={ () => firebaseApp.database().ref().child('talks').child(talk._key).remove() } style={{cursor: 'pointer', color: 'red'}}>eliminar</a></td>
                         </tr>)
                       }
                       else {
