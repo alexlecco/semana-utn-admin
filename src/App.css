@@ -42,3 +42,19 @@
 li {
   list-style-type: none;
 }
+
+.form-container {
+/*background-color: cyan;*/
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-left: 300px;
+  padding-right: 300px;
+}
+
+.table-container {
+/*background-color: lightblue;*/
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
