@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
@@ -7,7 +7,7 @@ import {
 	Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
 
-import firebaseApp from './firebase';
+import firebaseApp from '../firebase';
 
 export default class NewtalkForm extends Component {
 	
