@@ -79,7 +79,10 @@ export default class App extends Component {
           <h1 className="App-title"> Semana de la UTN - Admin </h1>
         </header>
 
-        <a onClick={this.hideOrShowNewtalkForm.bind(this)} style={{cursor: 'pointer', color: 'blue'}}>Nueva charla</a>
+        <a onClick={this.hideOrShowNewtalkForm.bind(this)}
+           style={{cursor: 'pointer', color: 'blue'}}>
+          { this.state.NewtalkFormVisible ? 'Ocultar Formulario' : 'Nueva charla' }
+        </a>
 
         { this.state.NewtalkFormVisible ? <NewtalkForm /> : <div /> }
 
