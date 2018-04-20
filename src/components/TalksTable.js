@@ -50,8 +50,8 @@ getRef() {
     });
   }
 
-  removeTalk(key) {
-    firebaseApp.database().child('talks').child(key).remove();
+  removeTalk(talk) {
+    this.getRef().child('talks').child(talk._key).remove()
   }
 
 
@@ -61,9 +61,7 @@ getRef() {
 
 	render() {
 		return(
-
 			<div>
-
 	      <div className="table-container">
 	        <h5>Charlas del día</h5>
 	        <select value={this.state.selectedDay} onChange={this.handleChange}>
@@ -95,7 +93,7 @@ getRef() {
 		                           style={{cursor: 'pointer', color: 'blue'}}>
 		                      modificar
 		                    </a></td>
-		                    <td><a onClick={ () => firebaseApp.database().ref().child('talks').child(talk._key).remove() }
+		                    <td><a onClick={ () => this.removeTalk(talk) }
 		                           style={{cursor: 'pointer', color: 'red'}}>
 		                      eliminar
 		                    </a></td>
@@ -110,9 +108,7 @@ getRef() {
 		        </tbody>
 		      </Table>
 	      </div>
-				
 			</div>
-
 		);
 	}
 }
