@@ -15,15 +15,22 @@ export default class App extends Component {
     this.state = {
       NewtalkFormVisible: false,
     };
+    let handleToUpdate = this.handleToUpdate.bind(this);
   }
 
   hideOrShowNewtalkForm() {
     this.setState({NewtalkFormVisible: !this.state.NewtalkFormVisible});
   }
 
+  handleToUpdate(someLet) {
+    this.hideOrShowNewtalkForm();
+  }
+
   render() {
+    let handleToUpdate = this.handleToUpdate;
     return (
       <div className="App">
+
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title"> Semana de la UTN - Admin </h1>
@@ -36,7 +43,7 @@ export default class App extends Component {
 
         { this.state.NewtalkFormVisible ? <NewtalkForm /> : <div /> }
 
-        <TalksTable />
+        <TalksTable handleToUpdate={handleToUpdate.bind(this)} />
 
       </div>
      );

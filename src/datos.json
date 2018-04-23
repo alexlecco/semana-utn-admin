@@ -1,0 +1,69 @@
+{
+  "talks" : {
+    "-LAWYBI0Z2Gc5ku2Zuqy" : {
+      "day" : "monday",
+      "time" : "19:00",
+      "title" : "Concierto en vivo, Los Juan"
+    },
+    "-LAWYPc_L2UqTdBDztwQ" : {
+      "day" : "monday",
+      "time" : "17:30",
+      "title" : "Contruccion de prototipos electrónicos con bloques preensamblados"
+    },
+    "-LAWYVlBcTW24wCGFqnA" : {
+      "day" : "tuesday",
+      "time" : "16:00",
+      "title" : "La casa abierta"
+    },
+    "-LAWY_RSuOPef1SCFSfM" : {
+      "day" : "tuesday",
+      "time" : "10:00",
+      "title" : "Poniendole ojos a las maquina"
+    },
+    "-LAWYdICxwIH2HhlY__C" : {
+      "day" : "tuesday",
+      "time" : "19:00",
+      "title" : "Los cien años de Finlandia"
+    },
+    "-LAWYn2Q1M9fSDYCEFqq" : {
+      "day" : "tuesday",
+      "time" : "21:00",
+      "title" : "Scania en Argentina"
+    },
+    "-LAWYuSwrZuDS5walJ8Y" : {
+      "day" : "tuesday",
+      "time" : "17:00",
+      "title" : "¿Como y porqué emprender?"
+    },
+    "-LAWZHc8AfupHzQgqe45" : {
+      "day" : "monday",
+      "time" : "20:00",
+      "title" : "Espectáculo de fuegos artificiales"
+    },
+    "-LAWZNmXUAIbhlXX4Kuj" : {
+      "day" : "monday",
+      "time" : "17:00",
+      "title" : "Embajada de Suiza en Argentina"
+    },
+    "-aaaaaaaaaaaaaaaaaaa" : {
+      "day" : "wednesday",
+      "time" : "10:00",
+      "title" : "Adicciones"
+    },
+    "-bbbbbbbbbbbbbbbbbbb" : {
+      "day" : "wednesday",
+      "time" : "11:00",
+      "title" : "La nube 2.0 (Microsoft)"
+    },
+    "-ccccccccccccccccccccc" : {
+      "day" : "wednesday",
+      "time" : "12:00",
+      "title" : "Bots, qué son y como construirlos"
+    },
+    "-dddddddddddddddddddddd" : {
+      "day" : "monday",
+      "time" : "09:00",
+      "title" : "Acto académico de apertura"
+    }
+  }
+}

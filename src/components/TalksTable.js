@@ -60,6 +60,7 @@ getRef() {
   }
 
 	render() {
+		let handleToUpdate = this.props.handleToUpdate;
 		return(
 			<div>
 	      <div className="table-container">
@@ -71,6 +72,9 @@ getRef() {
 	          <option value="thursday">Jueves</option>
 	          <option value="friday">Viernes</option>
 	        </select>
+
+					<br />
+					<br />
 
 					<Table striped>
 		        <thead>
@@ -89,7 +93,7 @@ getRef() {
 		                  return(<tr>
 		                    <th scope="row"> {talk.time} </th>
 		                    <td> {talk.title} </td>
-		                    <td><a onClick={ () => {} }
+		                    <td><a onClick={ () => handleToUpdate() }
 		                           style={{cursor: 'pointer', color: 'blue'}}>
 		                      modificar
 		                    </a></td>
