@@ -10,7 +10,7 @@ import {
 import firebaseApp from '../firebase';
 
 export default class NewtalkForm extends Component {
-	
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -49,11 +49,17 @@ export default class NewtalkForm extends Component {
       title: this.inputTitle.value,
       day: day,
       time: this.inputTime.value,
-    });
-    this.inputTitle.value = ''; // <- clear the input
+			description: this.inputDescription.value,
+    }).key;
+		this.inputTitle.value = ''; // <- clear the input
+    this.inputDescription.value = ''; // <- clear the input
     this.inputTime.value = ''; // <- clear the input
     this.setState({dropdownValue: 'lunes'}); // <- reset state
   }
+
+	updateTalk() {
+		alert('update');
+	}
 
 	render() {
 		return(
@@ -61,13 +67,17 @@ export default class NewtalkForm extends Component {
           <div className="form-container">
               <h3>Nueva charla</h3>
 
-              <FormGroup>             
+              <FormGroup>
                 <Label for="title">Titulo</Label>
                 <Input id="title" type="text" innerRef={ title => this.inputTitle = title } />
               </FormGroup>
-              
-              <FormGroup>
 
+							<FormGroup>
+								<Label for="description">Descripcion</Label>
+								<Input id="description" type="text" innerRef={ description => this.inputDescription = description } />
+							</FormGroup>
+
+              <FormGroup>
                 <Label for="day">Día</Label>
                 <Dropdown id="day" isOpen={this.state.dropdownOpen} toggle={this.toggle} innerRef={ day => this.inputDay = day }>
                   <DropdownToggle> {this.state.dropdownValue} </DropdownToggle>
@@ -87,7 +97,7 @@ export default class NewtalkForm extends Component {
                 <Input id="time" placeholder="hora" type="time" innerRef={ time => this.inputTime = time } />
               </FormGroup>
 
-              <Button>Crear</Button>            
+              <Button>Crear</Button>
             </div>
         </Form>
 		);

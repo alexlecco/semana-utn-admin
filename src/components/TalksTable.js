@@ -27,40 +27,34 @@ getRef() {
 
   listenForItems(talksRef) {
     talksRef.on('value', snap => {
-
       // get children as an array
       let talks = [];
-
       snap.forEach((child) => {
         talks.push({
-
           day: child.val().day,
-          id: child.val().id,
           time: child.val().time,
-          title: child.val().title,
+					title: child.val().title,
+          description: child.val().description,
           _key: child.key
-
         });
       });
-
       this.setState({
         talks: talks
       });
-
     });
+  }
+
+	handleChange(event) {
+    this.setState({selectedDay: event.target.value});
   }
 
   removeTalk(talk) {
     this.getRef().child('talks').child(talk._key).remove()
   }
 
-
-  handleChange(event) {
-    this.setState({selectedDay: event.target.value});
-  }
-
 	render() {
 		let handleToUpdate = this.props.handleToUpdate;
+		console.log("PROPS EN RENDER DE TalksTable:", this.props);
 		return(
 			<div>
 	      <div className="table-container">
@@ -79,8 +73,10 @@ getRef() {
 					<Table striped>
 		        <thead>
 		          <tr>
+								<th>id</th>
 		            <th>hora</th>
-		            <th>titulo</th>
+								<th>titulo</th>
+		            <th>descripcion</th>
 		            <th></th>
 		            <th></th>
 		          </tr>
@@ -91,9 +87,11 @@ getRef() {
 		              (talk) => {
 		                if (talk.day === this.state.selectedDay) {
 		                  return(<tr>
+												<td> {talk._key} </td>
 		                    <th scope="row"> {talk.time} </th>
-		                    <td> {talk.title} </td>
-		                    <td><a onClick={ () => handleToUpdate() }
+												<td> {talk.title} </td>
+		                    <td> {talk.description} </td>
+		                    <td><a onClick={ () => handleToUpdate(talk) }
 		                           style={{cursor: 'pointer', color: 'blue'}}>
 		                      modificar
 		                    </a></td>

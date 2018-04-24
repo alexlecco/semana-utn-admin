@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NewtalkForm from './components/NewtalkForm';
 import TalksTable from './components/TalksTable';
+import UpdatetalkForm from './components/UpdatetalkForm';
 
 import firebaseApp from './firebase';
 
@@ -14,6 +15,8 @@ export default class App extends Component {
     super(props);
     this.state = {
       NewtalkFormVisible: false,
+      UpdatetalkFormVisible: false,
+      talkToUpdate: '',
     };
     let handleToUpdate = this.handleToUpdate.bind(this);
   }
@@ -22,12 +25,22 @@ export default class App extends Component {
     this.setState({NewtalkFormVisible: !this.state.NewtalkFormVisible});
   }
 
-  handleToUpdate(someLet) {
-    this.hideOrShowNewtalkForm();
+  hideOrShowUpdatetalkForm() {
+    this.setState({UpdatetalkFormVisible: !this.state.UpdatetalkFormVisible});
+  }
+
+  handleToUpdate(talk) {
+    this.hideOrShowUpdatetalkForm();
+    this.setState({
+      talkToUpdate: talk,
+    });
+    console.log("TALK EN handleToUpdate: ", talk, "ESTADOS EN handleToUpdate:", this.state);
   }
 
   render() {
     let handleToUpdate = this.handleToUpdate;
+    let hideOrShowUpdatetalkForm = this.hideOrShowUpdatetalkForm;
+    console.log("PROPS EN RENDER DE APP:", this.props);
     return (
       <div className="App">
 
@@ -36,14 +49,25 @@ export default class App extends Component {
           <h1 className="App-title"> Semana de la UTN - Admin </h1>
         </header>
 
-        <a onClick={this.hideOrShowNewtalkForm.bind(this)}
-           style={{cursor: 'pointer', color: 'blue'}}>
-          { this.state.NewtalkFormVisible ? 'Ocultar Formulario' : 'Nueva charla' }
-        </a>
+        <div className="panel">
+          <a onClick={() => {}}
+             style={{cursor: 'pointer', color: 'blue', marginLeft: 20}}>
+             vaciar db
+          </a>
+          <a onClick={this.hideOrShowNewtalkForm.bind(this)}
+             style={{cursor: 'pointer', color: 'blue', marginLeft: 20}}>
+            { this.state.NewtalkFormVisible ? 'Ocultar Formulario' : 'Nueva charla' }
+          </a>
+        </div>
 
-        { this.state.NewtalkFormVisible ? <NewtalkForm /> : <div /> }
+        { this.state.NewtalkFormVisible ? <NewtalkForm/> : <div /> }
 
-        <TalksTable handleToUpdate={handleToUpdate.bind(this)} />
+        { this.state.UpdatetalkFormVisible ?
+          <UpdatetalkForm talk={this.state.talkToUpdate}
+                          hideOrShowUpdatetalkForm={this.hideOrShowUpdatetalkForm.bind(this)} /> :
+          <div /> }
+
+        <TalksTable {...this.props} handleToUpdate={this.handleToUpdate.bind(this)} />
 
       </div>
      );
