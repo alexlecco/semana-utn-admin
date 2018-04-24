@@ -16,6 +16,7 @@ export default class App extends Component {
     this.state = {
       NewtalkFormVisible: false,
       UpdatetalkFormVisible: false,
+      talksVisible: true,
       talkToUpdate: '',
     };
     let handleToUpdate = this.handleToUpdate.bind(this);
@@ -37,6 +38,19 @@ export default class App extends Component {
     console.log("TALK EN handleToUpdate: ", talk, "ESTADOS EN handleToUpdate:", this.state);
   }
 
+  deleteTalks() {
+    firebaseApp.database().ref('talks').set(null);
+  }
+
+  setTalks() {
+    const data = require('./datos.json')
+    firebaseApp.database().ref().child('talks').set(data.talks)
+  }
+
+  hideOrShowTalks() {
+    this.setState({talksVisible: !this.state.talksVisible});
+  }
+
   render() {
     let handleToUpdate = this.handleToUpdate;
     let hideOrShowUpdatetalkForm = this.hideOrShowUpdatetalkForm;
@@ -50,17 +64,17 @@ export default class App extends Component {
         </header>
 
         <div className="panel">
-          <a onClick={() => {}}
+          <a onClick={() => this.deleteTalks()}
              style={{cursor: 'pointer', color: 'blue', marginLeft: 40}}>
              Borrar charlas
           </a>
-          <a onClick={() => {}}
+          <a onClick={() => this.setTalks()}
              style={{cursor: 'pointer', color: 'blue', marginLeft: 40}}>
              Reestablecer charlas
           </a>
-          <a onClick={() => {}}
+          <a onClick={() => this.hideOrShowTalks()}
              style={{cursor: 'pointer', color: 'blue', marginLeft: 40}}>
-             Ocultar charlas
+             { this.state.talksVisible ? 'Ocultar charlas' : 'Mostrar charlas' }
           </a>
           <a onClick={() => {}}
              style={{cursor: 'pointer', color: 'blue', marginLeft: 40}}>
@@ -79,7 +93,9 @@ export default class App extends Component {
                           hideOrShowUpdatetalkForm={this.hideOrShowUpdatetalkForm.bind(this)} /> :
           <div /> }
 
-        <TalksTable {...this.props} handleToUpdate={this.handleToUpdate.bind(this)} />
+        { (this.state.talksVisible) ?
+            <TalksTable {...this.props} handleToUpdate={this.handleToUpdate.bind(this)} /> :
+            <div /> }
 
       </div>
      );
