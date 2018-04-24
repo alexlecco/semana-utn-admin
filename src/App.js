@@ -51,11 +51,23 @@ export default class App extends Component {
 
         <div className="panel">
           <a onClick={() => {}}
-             style={{cursor: 'pointer', color: 'blue', marginLeft: 20}}>
-             Borrar db
+             style={{cursor: 'pointer', color: 'blue', marginLeft: 40}}>
+             Borrar charlas
+          </a>
+          <a onClick={() => {}}
+             style={{cursor: 'pointer', color: 'blue', marginLeft: 40}}>
+             Reestablecer charlas
+          </a>
+          <a onClick={() => {}}
+             style={{cursor: 'pointer', color: 'blue', marginLeft: 40}}>
+             Ocultar charlas
+          </a>
+          <a onClick={() => {}}
+             style={{cursor: 'pointer', color: 'blue', marginLeft: 40}}>
+             Crear Aula
           </a>
           <a onClick={this.hideOrShowNewtalkForm.bind(this)}
-             style={{cursor: 'pointer', color: 'blue', marginLeft: 20}}>
+             style={{cursor: 'pointer', color: 'blue', marginLeft: 40}}>
             { this.state.NewtalkFormVisible ? 'Ocultar Formulario' : 'Nueva charla' }
           </a>
         </div>

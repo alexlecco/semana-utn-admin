@@ -1,6 +1,11 @@
 body {
 }
 
+a {
+  cursor: 'pointer';
+  color: 'blue';
+}
+
 .App {
   text-align: center;
 }
@@ -64,4 +69,8 @@ li {
 
 .panel {
 
+}
+
+.panel-element {
+  marginLeft: 40;
 }
