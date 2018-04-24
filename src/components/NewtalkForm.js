@@ -45,16 +45,26 @@ export default class NewtalkForm extends Component {
     }
 
     /* Send the talk to Firebase */
-    firebaseApp.database().ref('talks').push({
-      title: this.inputTitle.value,
-      day: day,
-      time: this.inputTime.value,
-			description: this.inputDescription.value,
-    }).key;
-		this.inputTitle.value = ''; // <- clear the input
-    this.inputDescription.value = ''; // <- clear the input
-    this.inputTime.value = ''; // <- clear the input
-    this.setState({dropdownValue: 'lunes'}); // <- reset state
+		if (this.inputTitle.value != '' & this.inputDescription.value != '' & this.inputTime.value != '')  {
+			firebaseApp.database().ref('talks').push({
+	      title: this.inputTitle.value,
+				description: this.inputDescription.value,
+	      day: day,
+	      time: this.inputTime.value,
+	    }).key;
+			this.inputTitle.value = ''; // <- clear the input
+	    this.inputDescription.value = ''; // <- clear the input
+	    this.inputTime.value = ''; // <- clear the input
+	    this.setState({dropdownValue: 'lunes'}); // <- reset state
+		}
+		else {
+			let message = '';
+			if (this.inputTitle.value === '') { message += 'Titulo vacio \n';}
+			if (this.inputDescription.value === '') { message += 'Descripcion vacia \n';}
+			if (this.inputTime.value === '') { message += 'Hora vacia \n';}
+
+			alert(message);
+		}
   }
 
 	updateTalk() {

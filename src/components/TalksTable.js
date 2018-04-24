@@ -73,7 +73,6 @@ getRef() {
 					<Table striped>
 		        <thead>
 		          <tr>
-								<th>id</th>
 		            <th>hora</th>
 								<th>titulo</th>
 		            <th>descripcion</th>
@@ -87,7 +86,6 @@ getRef() {
 		              (talk) => {
 		                if (talk.day === this.state.selectedDay) {
 		                  return(<tr>
-												<td> {talk._key} </td>
 		                    <th scope="row"> {talk.time} </th>
 												<td> {talk.title} </td>
 		                    <td> {talk.description} </td>

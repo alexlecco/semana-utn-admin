@@ -52,7 +52,7 @@ export default class App extends Component {
         <div className="panel">
           <a onClick={() => {}}
              style={{cursor: 'pointer', color: 'blue', marginLeft: 20}}>
-             vaciar db
+             Borrar db
           </a>
           <a onClick={this.hideOrShowNewtalkForm.bind(this)}
              style={{cursor: 'pointer', color: 'blue', marginLeft: 20}}>
