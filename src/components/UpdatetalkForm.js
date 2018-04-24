@@ -68,7 +68,7 @@ export default class UpdatetalkForm extends Component {
 		return(
 			<Form onSubmit={this.updateTalk.bind(this)}>
           <div className="form-container">
-              <h3>Nueva charla</h3>
+              <h3>Modificar charla</h3>
 
               <FormGroup>
                 <Label for="title">Titulo</Label>
@@ -101,7 +101,7 @@ export default class UpdatetalkForm extends Component {
 											 onChange={ e => this.onTimeChange(e.target.value) } />
               </FormGroup>
 
-              <Button>Modificar</Button>
+              <Button>Confirmar</Button>
             </div>
         </Form>
 		);

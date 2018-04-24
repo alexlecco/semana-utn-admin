@@ -1,3 +1,6 @@
+body {
+}
+
 .App {
   text-align: center;
 }
@@ -44,7 +47,7 @@ li {
 }
 
 .form-container {
-/*background-color: cyan;*/
+  background-color: #CDCDCD;
   margin-top: 50px;
   margin-bottom: 50px;
   padding-left: 300px;

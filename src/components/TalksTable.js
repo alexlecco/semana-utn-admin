@@ -70,7 +70,7 @@ getRef() {
 					<br />
 					<br />
 
-					<Table striped>
+					<Table striped hover>
 		        <thead>
 		          <tr>
 		            <th>hora</th>
