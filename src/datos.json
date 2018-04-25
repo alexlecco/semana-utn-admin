@@ -3,67 +3,80 @@
     "-LAWYBI0Z2Gc5ku2Zuqy" : {
       "day" : "monday",
       "time" : "19:00",
-      "title" : "Concierto en vivo, Los Juan"
+      "title" : "Concierto en vivo, Los Juan",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-LAWYPc_L2UqTdBDztwQ" : {
       "day" : "monday",
       "time" : "17:30",
-      "title" : "Contruccion de prototipos electrónicos con bloques preensamblados"
+      "title" : "Contruccion de prototipos electrónicos con bloques preensamblados",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-LAWYVlBcTW24wCGFqnA" : {
       "day" : "tuesday",
       "time" : "16:00",
-      "title" : "La casa abierta"
+      "title" : "La casa abierta",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-LAWY_RSuOPef1SCFSfM" : {
       "day" : "tuesday",
       "time" : "10:00",
-      "title" : "Poniendole ojos a las maquina"
+      "title" : "Poniendole ojos a las maquina",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-LAWYdICxwIH2HhlY__C" : {
       "day" : "tuesday",
       "time" : "19:00",
-      "title" : "Los cien años de Finlandia"
+      "title" : "Los cien años de Finlandia",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-LAWYn2Q1M9fSDYCEFqq" : {
       "day" : "tuesday",
       "time" : "21:00",
-      "title" : "Scania en Argentina"
+      "title" : "Scania en Argentina",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-LAWYuSwrZuDS5walJ8Y" : {
       "day" : "tuesday",
       "time" : "17:00",
-      "title" : "¿Como y porqué emprender?"
+      "title" : "¿Como y porqué emprender?",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-LAWZHc8AfupHzQgqe45" : {
       "day" : "monday",
       "time" : "20:00",
-      "title" : "Espectáculo de fuegos artificiales"
+      "title" : "Espectáculo de fuegos artificiales",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-LAWZNmXUAIbhlXX4Kuj" : {
       "day" : "monday",
       "time" : "17:00",
-      "title" : "Embajada de Suiza en Argentina"
+      "title" : "Embajada de Suiza en Argentina",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-aaaaaaaaaaaaaaaaaaa" : {
       "day" : "wednesday",
       "time" : "10:00",
-      "title" : "Adicciones"
+      "title" : "Adicciones",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-bbbbbbbbbbbbbbbbbbb" : {
       "day" : "wednesday",
       "time" : "11:00",
-      "title" : "La nube 2.0 (Microsoft)"
+      "title" : "La nube 2.0 (Microsoft)",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-ccccccccccccccccccccc" : {
       "day" : "wednesday",
       "time" : "12:00",
-      "title" : "Bots, qué son y como construirlos"
+      "title" : "Bots, qué son y como construirlos",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     },
     "-dddddddddddddddddddddd" : {
       "day" : "monday",
       "time" : "09:00",
-      "title" : "Acto académico de apertura"
+      "title" : "Acto académico de apertura",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita earum necessitatibus porro eos quae fugiat harum iusto aperiam modi veniam, voluptatem nemo obcaecati velit ut explicabo voluptate maxime corporis. Et."
     }
   }
 }
