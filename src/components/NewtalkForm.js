@@ -7,7 +7,7 @@ import {
 	Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
 
-import firebaseApp from '../firebase';
+import { firebaseApp } from '../firebase/firebase';
 
 export default class NewtalkForm extends Component {
 

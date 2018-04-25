@@ -4,13 +4,13 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route,} from 'react-router-dom';
 
-import Navigation from './auth/Navigation';
-import LandingPage from './auth/Landing';
-import SignUpPage from './auth/SignUp';
-import SignInPage from './auth/SignIn';
-import PasswordForgetPage from './auth/PasswordForget';
-import HomePage from './auth/Home';
-import AccountPage from './auth/Account';
+import Navigation from './auth-pages/Navigation';
+import LandingPage from './auth-pages/Landing';
+import SignUpPage from './auth-pages/SignUp';
+import SignInPage from './auth-pages/SignIn';
+import PasswordForgetPage from './auth-pages/PasswordForget';
+import HomePage from './auth-pages/Home';
+import AccountPage from './auth-pages/Account';
 
 import * as routes from './constants/routes';
 
@@ -18,7 +18,7 @@ import NewtalkForm from './components/NewtalkForm';
 import TalksTable from './components/TalksTable';
 import UpdatetalkForm from './components/UpdatetalkForm';
 
-import firebaseApp from './firebase';
+import { firebaseApp } from './firebase/firebase';
 
 export default class App extends Component {
 
@@ -53,7 +53,7 @@ export default class App extends Component {
   }
 
   setTalks() {
-    const data = require('./datos.json')
+    const data = require('./firebase/datos.json')
     firebaseApp.database().ref().child('talks').set(data.talks)
   }
 

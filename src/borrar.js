@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import firebaseApp from './firebase';
+import { firebaseApp } from './firebase/firebase';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -65,7 +65,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
+
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title"> Semana de la UTN - Admin </h1>
@@ -77,7 +77,7 @@ class App extends Component {
               <Input placeholder="titulo" type="text" ref={ title => this.inputTitle = title } />
               <Input placeholder="dia"    type="text" ref={ day => this.inputDay = day } />
               <Input placeholder="hora"   type="text" ref={ time => this.inputTime = time } />
-            
+
               <Input type="submit" />
             </div>
             <ul>

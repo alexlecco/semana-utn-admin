@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table } from 'reactstrap';
-import firebaseApp from '../firebase';
+import { firebaseApp } from '../firebase/firebase';
 
 export default class TalksTable extends Component {
 

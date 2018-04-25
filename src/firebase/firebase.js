@@ -8,6 +8,15 @@ var firebaseConfig = {
   storageBucket: "semana-utn-c9f91.appspot.com",
   messagingSenderId: "385895562914"
 };
-var firebaseApp = firebase.initializeApp(firebaseConfig);
 
-export default firebaseApp;
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+const firebaseApp = firebase;
+const auth = firebase.auth();
+
+export {
+  firebaseApp,
+  auth,
+};
