@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import './App.css';
+import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route,} from 'react-router-dom';
 
 import Navigation from './auth-pages/Navigation';
@@ -26,16 +29,21 @@ class App extends Component {
       <Router>
 
         <div>
-          <Navigation authUser={this.state.authUser} />
-          <hr/>
+          <div className="App">
+              <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+                <h1 className="App-title"> Semana de la UTN - Admin </h1>
+              </header>
+            <Navigation authUser={this.state.authUser} />
+            <hr/>
 
-          <Route exact path={routes.LANDING} component={() => <LandingPage />} />
-          <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
-          <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
-          <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
-          <Route exact path={routes.HOME} component={() => <HomePage />} />
-          <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
-
+            <Route exact path={routes.LANDING} component={() => <LandingPage />} />
+            <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
+            <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
+            <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
+            <Route exact path={routes.HOME} component={() => <HomePage />} />
+            <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
+          </div>
         </div>
 
       </Router>
