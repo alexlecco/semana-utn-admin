@@ -19,9 +19,9 @@ import TalksTable from './components/TalksTable';
 import UpdatetalkForm from './components/UpdatetalkForm';
 
 import { firebaseApp } from './firebase/firebase';
+import withAuthentication from './withAuthentication';
 
-export default class App extends Component {
-
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,6 +29,7 @@ export default class App extends Component {
       UpdatetalkFormVisible: false,
       talksVisible: true,
       talkToUpdate: '',
+      authUser: null,
     };
     let handleToUpdate = this.handleToUpdate.bind(this);
   }
@@ -68,7 +69,7 @@ export default class App extends Component {
       <Router>
 
         <div>
-          <Navigation />
+          <Navigation authUser={this.state.authUser} />
           <hr/>
 
           <Route exact path={routes.LANDING} component={() => <LandingPage />} />
@@ -125,3 +126,5 @@ export default class App extends Component {
      );
   }
 }
+
+export default withAuthentication(App);
