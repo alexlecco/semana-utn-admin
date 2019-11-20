@@ -17,7 +17,7 @@ export default class TalksTable extends Component {
     this.removeTalk = this.removeTalk.bind(this);
 	}
 
-getRef() {
+  getRef() {
     return firebaseApp.database().ref();
   }
 
@@ -60,11 +60,11 @@ getRef() {
 	      <div className="table-container">
 	        <h5>Charlas del día</h5>
 	        <select value={this.state.selectedDay} onChange={this.handleChange}>
-	          <option value="monday">Lunes</option>
-	          <option value="tuesday">Martes</option>
-	          <option value="wednesday">Miercoles</option>
-	          <option value="thursday">Jueves</option>
-	          <option value="friday">Viernes</option>
+	          <option value="monday">     Lunes    </option>
+	          <option value="tuesday">    Martes   </option>
+	          <option value="wednesday"> Miercoles </option>
+	          <option value="thursday">   Jueves   </option>
+	          <option value="friday">     Viernes  </option>
 	        </select>
 
 					<br />

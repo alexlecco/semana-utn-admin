@@ -14,19 +14,51 @@ export default class NewtalkForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      dropdownOpen: false,
-      dropdownOpen: false,
-      dropdownValue : "lunes"
+      sitesDropdownName: "Aula Magna",
+      sitesDropdownId: "",
+      sitesDropdownOpen: false,
+      daysDropdownValue : "lunes",
+      daysDropdownOpen: false,
+      sites: [],
 		}
-    this.toggle = this.toggle.bind(this);
-    this.select = this.select.bind(this);
-	}
+    this.toggleDays = this.toggleDays.bind(this);
+    this.toggleSites = this.toggleSites.bind(this);
+    this.selectDay = this.selectDay.bind(this);
+    this.selectSite = this.selectSite.bind(this);
+    
+    this.sitesRef = this.getRef().child('sites');
+  }
+
+  getRef() {
+    return firebaseApp.database().ref();
+  }
+
+  componentDidMount() {
+    this.listenForItems(this.sitesRef);
+  }
+  
+  listenForItems(sitesRef) {
+    sitesRef.on('value', snap => {
+      let sites = [];
+      snap.forEach((child) => {
+        sites.push({
+          id: child.val().id,
+          name: child.val().name,
+          _key: child.key
+        });
+      });
+      this.setState({
+        sites: sites
+      });
+    });
+  }
 
   addTalk(event) {
     event.preventDefault(); // <- prevent form submit from reloading the page
 
+    let site = {};
     let day = '';
-    switch(this.state.dropdownValue) {
+    switch(this.state.daysDropdownValue) {
       case 'lunes':
         day = 'monday';
         break;
@@ -50,12 +82,13 @@ export default class NewtalkForm extends Component {
 	      title: this.inputTitle.value,
 				description: this.inputDescription.value,
 	      day: day,
-	      time: this.inputTime.value,
+        time: this.inputTime.value,
+        site: this.state.sitesDropdownId,
 	    }).key;
 			this.inputTitle.value = ''; // <- clear the input
 	    this.inputDescription.value = ''; // <- clear the input
 	    this.inputTime.value = ''; // <- clear the input
-	    this.setState({dropdownValue: 'lunes'}); // <- reset state
+	    this.setState({daysDropdownValue: 'lunes'}); // <- reset state
 		}
 		else {
 			let message = '';
@@ -72,6 +105,8 @@ export default class NewtalkForm extends Component {
 	}
 
 	render() {
+    const { sites } = this.state
+
 		return(
 			<Form onSubmit={this.addTalk.bind(this)}>
           <div className="form-container">
@@ -89,14 +124,17 @@ export default class NewtalkForm extends Component {
 
               <FormGroup>
                 <Label for="day">Día</Label>
-                <Dropdown id="day" isOpen={this.state.dropdownOpen} toggle={this.toggle} innerRef={ day => this.inputDay = day }>
-                  <DropdownToggle> {this.state.dropdownValue} </DropdownToggle>
+                <Dropdown id="day" 
+                          isOpen={this.state.daysDropdownOpen}
+                          toggle={this.toggleDays}
+                          innerRef={ day => this.inputDay = day }>
+                  <DropdownToggle> {this.state.daysDropdownValue} </DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem onClick={this.select}> lunes     </DropdownItem>
-                    <DropdownItem onClick={this.select}> martes    </DropdownItem>
-                    <DropdownItem onClick={this.select}> miercoles </DropdownItem>
-                    <DropdownItem onClick={this.select}> jueves    </DropdownItem>
-                    <DropdownItem onClick={this.select}> viernes   </DropdownItem>
+                    <DropdownItem onClick={this.selectDay}> lunes     </DropdownItem>
+                    <DropdownItem onClick={this.selectDay}> martes    </DropdownItem>
+                    <DropdownItem onClick={this.selectDay}> miercoles </DropdownItem>
+                    <DropdownItem onClick={this.selectDay}> jueves    </DropdownItem>
+                    <DropdownItem onClick={this.selectDay}> viernes   </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
               </FormGroup>
@@ -107,22 +145,56 @@ export default class NewtalkForm extends Component {
                 <Input id="time" placeholder="hora" type="time" innerRef={ time => this.inputTime = time } />
               </FormGroup>
 
+              <FormGroup>
+                <Label for="site">Aula</Label>
+                <Dropdown id="site" 
+                          isOpen={this.state.sitesDropdownOpen} 
+                          toggle={this.toggleSites} 
+                          innerRef={ site => this.inputSite = site }>
+                  <DropdownToggle> {this.state.sitesDropdownName} </DropdownToggle>
+                  <DropdownMenu>
+                    {
+                      sites.map(site => (
+                        <DropdownItem key={site.id} onClick={() => this.selectSite(site)}> {site.name} </DropdownItem>
+                      ))
+                    }
+                  </DropdownMenu>
+                </Dropdown>
+              </FormGroup>
+
               <Button>Crear</Button>
             </div>
         </Form>
 		);
 	}
 
-	toggle() {
+	toggleDays() {
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      daysDropdownOpen: !this.state.daysDropdownOpen
     });
   }
 
-  select(event) {
+  toggleSites() {
     this.setState({
-      dropdownValue: event.target.innerText,
-      dropdownOpen: !this.state.dropdownOpen,
+      sitesDropdownOpen: !this.state.sitesDropdownOpen
     });
   }
+
+  selectDay(event) {
+    console.log("DIA SELECCIONADO::::", event.target.innerText)
+    this.setState({
+      daysDropdownValue: event.target.innerText,
+      daysDropdownOpen: !this.state.daysDropdownOpen,
+    });
+  }
+
+  selectSite(site) {
+    const formattedID = site.id.replace('site','');
+
+    this.setState({
+      sitesDropdownId: formattedID,
+      sitesDropdownName: site.name,
+      sitesDropdownOpen: !this.state.sitesDropdownOpen,
+    });
+  };
 }
